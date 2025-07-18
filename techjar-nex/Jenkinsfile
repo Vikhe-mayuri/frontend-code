@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning repo'
+            }
+        }
+
+        stage('Install dependencies') {
+            steps {
+                dir('techjar-nex') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('techjar-nex') {
+                    sh 'npm run build'
+                }
+            }
+        }
+    }
+}
